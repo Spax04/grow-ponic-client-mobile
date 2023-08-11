@@ -19,12 +19,12 @@ const BottomTabNavigator = () => {
       tabBar={(props) => <CustomTabBar {...props} />}
       initialRouteName={ROUTES.HOME_TAB}
       screenOptions={({ route }) => ({
+       
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarInactiveTintColor: COLORS.dark,
+        tabBarInactiveTintColor: COLORS.white,
         tabBarStyle: styles.tabBarStyle,
-        tabBarItemStyle: styles.tabBarItemStyle,
-        tabBarActiveTintColor: COLORS.primary,
+        tabBarActiveTintColor: COLORS.white,
         tabBarIcon: ({ color, size, focused }) => {
           let icon;
 
@@ -53,8 +53,11 @@ const BottomTabNavigator = () => {
         name={ROUTES.HOME_TAB}
         component={HomeScreen}
         options={{
+          
           tabBarLabel: 'Home',
           headerShown: true,
+          headerTintColor:'white',
+          headerStyle:{backgroundColor:COLORS.mainColor},
           title: 'Home',
           tabBarButton: (props) => <CustomTabBarButton {...props} />,
           headerRight: () => {
@@ -63,7 +66,7 @@ const BottomTabNavigator = () => {
                 <Ionicons
                   name={Platform.OS === 'ios' ? 'ios-menu' : 'md-menu'}
                   size={30}
-                  color={COLORS.dark}
+                  color={COLORS.white}
                   style={{marginRight:10}}
                 />
               </TouchableOpacity>
@@ -92,8 +95,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.transparent,
     borderWidth: 0,
     bottom: 20,
-    right: 10,
-    left: 10,
+    right:11,
+    left:11,
     height: 62,
     elevation: 0, // Removies shadow on Android
   },

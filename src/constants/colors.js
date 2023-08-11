@@ -5,16 +5,15 @@ export default {
     orangeColor: '#F3A738',
     purpureColor:'#49306B',
     
-
-        gradientForm: '#A376F1',
-        primary: '#7d5fff',
-        white: '#FFFFFF',
-        dark: '#444',
-        bgColor: '#82ccdd',
+        primary: '#427AA1',
+        white: '#fff',
+        dark: '#283618',
+        bgColor: '#FEFAE0',
         warning: '#f0d500',
         danger: '#FF0D0E',
-        gray: '#666666',
-        grayLight: '#ccc',
+        mainColor: '#606C38',
+        lightBrown:'#DDA15E',
+        brown:'#BC6C25',
         black: '#0a0a0a',
 
 }

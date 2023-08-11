@@ -11,6 +11,7 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
+import { COLORS } from '../constants';
 
 const { width } = Dimensions.get('screen');
 
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     left: width / 2 - 110,
     bottom: -110 / 2,
     borderWidth: 5,
-    borderColor: 'white',
+    borderColor: COLORS.white,
   },
   drawerListWrapper: {
     marginTop: 110 / 2 + 10,

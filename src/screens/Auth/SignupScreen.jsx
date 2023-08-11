@@ -3,14 +3,14 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { ROUTES } from '../../constants';
 import globalStyles from '../../styles/globalStyles';
+import AuthForm from '../../components/AuthForm';
 
 const SignupScreen = () => {
 
     const navigation = useNavigation();
   return (
     <View style={globalStyles.container}>
-      <Text>SignupScreen</Text>
-      <Button title='Go to Signin screen' onPress={()=>navigation.navigate(ROUTES.LOGIN)}/>
+       <AuthForm navigate={navigation.navigate} belongsTo={ROUTES.SIGNUP}/>
     </View>
   )
 }

@@ -1,24 +1,26 @@
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { ROUTES } from '../../constants';
+import { COLORS, ROUTES } from '../../constants';
 import globalStyles from '../../styles/globalStyles';
+import AuthForm from '../../components/AuthForm';
 
-const LoginScreen = ({navigation}) => {
-
+const LoginScreen = ({ navigation }) => {
   return (
     <View style={globalStyles.container}>
-      <Text>LoginScreen</Text>
-      <Button
-        title="Go to Signup screen"
-        onPress={() => navigation.navigate(ROUTES.SIGNUP)}
-      />
-      <Button title="Forgot password?" onPress={() => navigation.navigate(ROUTES.FORGOT_PASSWORD,{userId:'X0001'})} />
-      <Button title="Log In" onPress={() => navigation.navigate(ROUTES.HOME)} />
+     <AuthForm navigate={navigation.navigate} belongsTo={ROUTES.LOGIN}/>
+      
     </View>
   );
 };
 
 export default LoginScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  inputStyle: {
+    height: 50,
+    width:300,
+    margin:12,
+    backgroundColor:COLORS.white
+  },
+});

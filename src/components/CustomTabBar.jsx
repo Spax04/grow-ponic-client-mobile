@@ -17,16 +17,17 @@ export default CustomTabBar;
 const styles = StyleSheet.create({
   tabBar: {
     position: 'absolute',
-    right: 10,
-    left: 10,
+    right: 11,
+    left: 11,
     bottom: 15,
     height: 15,
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.mainColor
+    ,
     borderRadius: 10,
-    shadowColor: COLORS.black,
-    shadowOffset: {width:0,height:1},
-    shadowOpacity:0.25,
-    shadowRadius:2,
-    elevation:3
+    shadowColor: COLORS.white,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.25,
+    shadowRadius: 2,
+    elevation: 3,
   },
 });

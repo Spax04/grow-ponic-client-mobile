@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ForgotPasswordScreen, LoginScreen, SignupScreen } from '../screens';
-import { ROUTES } from '../constants';
+import { COLORS, ROUTES } from '../constants';
 import BottomTabNavigator from './BottomTabNavigator';
 import DrawerNavigator from './DrawerNavigator';
 
@@ -10,7 +10,7 @@ const Stack = createStackNavigator(); // { Navigator, Screen, Group }
 const AuthNavigator = () => {
   return (
     <Stack.Navigator
-      screenOptions={{headerTintColor:'white',headerBackTitleVisible:false, headerStyle: { backgroundColor: 'blue' } }}
+      screenOptions={{headerTintColor:COLORS.white,headerBackTitleVisible:false, headerShown:false }}
       initialRouteName={ROUTES.LOGIN}
     >
       <Stack.Screen name={ROUTES.LOGIN} component={LoginScreen} />

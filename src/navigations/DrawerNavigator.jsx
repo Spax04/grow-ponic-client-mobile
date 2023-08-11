@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { ROUTES } from '../constants';
+import { COLORS, ROUTES } from '../constants';
 import { HomeScreen, SystemScreen } from '../screens';
 import BottomTabNavigator from './BottomTabNavigator';
 import CustomDrawer from '../components/CustomDrawer';
@@ -15,7 +15,7 @@ const DrawerNavigator = () => {
       screenOptions={{
         headerShown: false,
         drawerActiveBackgroundColor: 'green',
-        drawerActiveTintColor: 'white',
+        drawerActiveTintColor: COLORS.white,
       }}
     >
       <Drawer.Screen

@@ -7,5 +7,6 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: COLORS.bgColor
+        
     }
 })
