@@ -15,5 +15,6 @@ export default {
         lightBrown:'#DDA15E',
         brown:'#BC6C25',
         black: '#0a0a0a',
+        lightGreen:"#6F7862"
 
 }

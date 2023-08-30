@@ -9,7 +9,7 @@ const ForgotPasswordScreen = () => {
   } = useRoute();
 
   return (
-    <View style={globalStyles.container}>
+    <View style={[globalStyles.container,{justifyContent:'center'}]}>
       <Text>ForgotPasswordScreen</Text>
       <Text>{userId}</Text>
 

@@ -9,7 +9,7 @@ const SignupScreen = () => {
 
     const navigation = useNavigation();
   return (
-    <View style={globalStyles.container}>
+    <View style={[globalStyles.container,{justifyContent:'center'}]}>
        <AuthForm navigate={navigation.navigate} belongsTo={ROUTES.SIGNUP}/>
     </View>
   )

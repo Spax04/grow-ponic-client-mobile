@@ -14,7 +14,7 @@ export default {
     NOTIFICATIONS: 'Notifications',
     NOTOFOCATIONS_DRAWER: 'Notifications Drawer',
 
-    SETTINGS: 'Settings',
-    ACCOUNT_SETTINGS: 'Account Settings',
+    USER_SETTINGS: 'Settings',
+    GENERAL_SETTINGS: 'Account Settings',
     SETTINGS_NAVIGATOR: 'Settings Navigator'
 }

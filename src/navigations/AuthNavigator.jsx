@@ -10,19 +10,28 @@ const Stack = createStackNavigator(); // { Navigator, Screen, Group }
 const AuthNavigator = () => {
   return (
     <Stack.Navigator
-      screenOptions={{headerTintColor:COLORS.white,headerBackTitleVisible:false, headerShown:false }}
+      screenOptions={{
+        headerTintColor: COLORS.white,
+        headerBackTitleVisible: false,
+        headerShown: false,
+
+      }}
       initialRouteName={ROUTES.LOGIN}
     >
       <Stack.Screen name={ROUTES.LOGIN} component={LoginScreen} />
       <Stack.Screen
         name={ROUTES.FORGOT_PASSWORD}
         component={ForgotPasswordScreen}
-        options={({route})=>({
-          title:route.params.userId
+        options={({ route }) => ({
+          title: route.params.userId,
         })}
       />
       <Stack.Screen name={ROUTES.SIGNUP} component={SignupScreen} />
-      <Stack.Screen name={ROUTES.HOME} component={DrawerNavigator} options={{headerShown:false}}/>
+      <Stack.Screen
+        name={ROUTES.HOME}
+        component={DrawerNavigator}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 };

@@ -7,7 +7,7 @@ import AuthForm from '../../components/AuthForm';
 
 const LoginScreen = ({ navigation }) => {
   return (
-    <View style={globalStyles.container}>
+    <View style={[globalStyles.container,{justifyContent:'center'}]}>
      <AuthForm navigate={navigation.navigate} belongsTo={ROUTES.LOGIN}/>
       
     </View>

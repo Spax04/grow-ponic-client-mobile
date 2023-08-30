@@ -19,7 +19,7 @@ const BottomTabNavigator = () => {
       tabBar={(props) => <CustomTabBar {...props} />}
       initialRouteName={ROUTES.HOME_TAB}
       screenOptions={({ route }) => ({
-       
+
         headerShown: false,
         tabBarShowLabel: false,
         tabBarInactiveTintColor: COLORS.white,
@@ -53,10 +53,12 @@ const BottomTabNavigator = () => {
         name={ROUTES.HOME_TAB}
         component={HomeScreen}
         options={{
-          
+          cardStyle: {
+            backgroundColor: 'black',
+         },
           tabBarLabel: 'Home',
           headerShown: true,
-          headerTintColor:'white',
+          headerTintColor:COLORS.white,
           headerStyle:{backgroundColor:COLORS.mainColor},
           title: 'Home',
           tabBarButton: (props) => <CustomTabBarButton {...props} />,
@@ -95,8 +97,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.transparent,
     borderWidth: 0,
     bottom: 20,
-    right:11,
-    left:11,
+    right:10,
+    left:10,
     height: 62,
     elevation: 0, // Removies shadow on Android
   },

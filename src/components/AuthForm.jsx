@@ -9,6 +9,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import { TextInput } from 'react-native-gesture-handler';
 import { COLORS, ROUTES } from '../constants';
+import Toast from 'react-native-toast-message';
 
 const AuthForm = ({ navigate, belongsTo }) => {
   const [email, setEmail] = useState('');
@@ -17,13 +18,21 @@ const AuthForm = ({ navigate, belongsTo }) => {
 
   useEffect(() => {}, []);
 
-  const login = ()=>{
-    navigate(ROUTES.HOME)
-  }
+  const login = () => {
+    navigate(ROUTES.HOME);
+  };
 
-  const signin = ()=>{
-    navigate(ROUTES.HOME)
-  }
+  const signin = () => {
+    if (password !== confirmPassword) {
+      Toast.show({
+        type: 'error',
+        text1: '⛔ Wrong confirm password',
+        text2: 'Check values in "password" and "confirm password" areas',
+      });
+    } else {
+      navigate(ROUTES.HOME);
+    }
+  };
 
   return (
     <View>
@@ -50,11 +59,9 @@ const AuthForm = ({ navigate, belongsTo }) => {
       />
 
       {belongsTo === ROUTES.LOGIN ? (
+        // Login View
         <View>
-          <TouchableOpacity
-            style={styles.loginBtn}
-            onPress={login}
-          >
+          <TouchableOpacity style={styles.loginBtn} onPress={login}>
             <Text style={styles.btnText}>Log in</Text>
           </TouchableOpacity>
           <Text
@@ -73,18 +80,18 @@ const AuthForm = ({ navigate, belongsTo }) => {
           </Text>
         </View>
       ) : (
+        // SignUp View
         <View>
           <TextInput
-            value={password}
-            onChangeText={(confirmPassword) => setConfirmPassword(confirmPassword)}
+            value={confirmPassword}
+            onChangeText={(confirmPassword) =>
+              setConfirmPassword(confirmPassword)
+            }
             style={styles.inputStyle}
             placeholder="Confirm password"
             secureTextEntry={true}
           />
-          <TouchableOpacity
-            style={styles.loginBtn}
-            onPress={signin}
-          >
+          <TouchableOpacity style={styles.loginBtn} onPress={signin}>
             <Text style={styles.btnText}>Sign In</Text>
           </TouchableOpacity>
 

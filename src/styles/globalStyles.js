@@ -4,9 +4,11 @@ import { COLORS } from "../constants"
 export default StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: COLORS.bgColor
-        
+         alignItems: 'center',
+        backgroundColor: COLORS.bgColor,
+    },
+    tabScrollView:{
+        maxHeight:690,
+        width: 335
     }
 })
