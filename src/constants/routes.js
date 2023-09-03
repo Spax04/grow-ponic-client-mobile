@@ -16,5 +16,7 @@ export default {
 
     USER_SETTINGS: 'Settings',
     GENERAL_SETTINGS: 'Account Settings',
-    SETTINGS_NAVIGATOR: 'Settings Navigator'
+    SETTINGS_NAVIGATOR: 'Settings Navigator',
+
+    PLANT_DETAILS : 'Plant Details'
 }

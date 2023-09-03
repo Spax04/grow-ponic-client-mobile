@@ -5,13 +5,17 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import globalStyles from '../../styles/globalStyles';
 import { ScrollView } from 'react-native-gesture-handler';
 import { COLORS } from '../../constants';
 import { MaterialIcons } from '@expo/vector-icons';
 import Plant from '../../components/Plant';
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import DropdownComponent from '../../components/DropdownComponent';
+import SystemData from '../../components/SystemScreenComponents/SystemData';
 
+// ### Mock data section ###
 const plantDataMock = [
   {
     id: 1,
@@ -36,47 +40,214 @@ const plantDataMock = [
   },
 ];
 
+const systemData = [
+  { id: 1, name: 'pH', data: 15 },
+  { id: 2, name: 'EC', data: 12 },
+  { id: 3, name: 'ppm', data: 17 },
+  { id: 4, name: 'sunlight', data: 4 },
+  { id: 5, name: 'Wather temp', data: 22 },
+  { id: 6, name: 'Holes in use', data: '3/12' },
+];
+
+const manipulOptions = [
+  { label: 'Epidemic', value: 1 },
+  { label: 'Harvesting', value: 2 },
+  { label: 'End Cycle', value: 3 },
+];
+
+// ### End mock data ###
+
 const SystemScreen = () => {
+  const [isManipulSelected, setIsManipulSelected] = useState(false);
+  const [plantArr, setPlantArr] = useState([]);
+  const [manipulOption,setManipulOption] = useState(0);
+
+  const addPlantToArr = (value) => {
+    console.log('Added to plant array');
+
+    setPlantArr([...plantArr, value]);
+
+    console.log(plantArr);
+  };
+
+  const removePlantFromArr = (value) => {
+    console.log('Removed from plant array');
+
+    let tempArr = [...plantArr];
+
+    tempArr = tempArr.filter((i) => i != value);
+    setPlantArr([...tempArr]);
+
+    console.log(plantArr);
+  };
+
+  const onDropdownFocuseChanged = (isFocused,value) => {
+    setIsManipulSelected(isFocused);
+    setManipulOption(value);
+  };
+
+  const onGroupManipul = () => {
+    switch(manipulOption){
+      case 1:
+        //
+        break;
+
+      case 2:
+        //
+        break;
+
+      case 3:
+        //
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  const addNewPlant = ()=>{
+
+  }
+
   return (
     <View style={[globalStyles.container, { justifyContent: 'center' }]}>
-      <ScrollView style={[globalStyles.tabScrollView, { width: 360 }]}>
+      <ScrollView showsVerticalScrollIndicator={false} style={[globalStyles.tabScrollView, { width: 360 }]}>
+        {/* System data */}
+        <Text style={styles.title}>My Hydroponic System</Text>
 
-          <Text style={styles.title}>My Hydroponic System</Text>
+        <FlatList
+          columnWrapperStyle={{ flexWrap: 'wrap', justifyContent: 'center' }}
+          numColumns={2}
+          scrollEnabled={false}
+          keyExtractor={(item) => item.id}
+          data={systemData}
+          renderItem={({ item }) => {
+            return <SystemData name={item.name} data={item.data} />;
+          }}
+        />
 
-        <View style={styles.systemDiv}>
-          <View style={styles.systemData}>
-            <Text style={styles.textStyle}>pH:15</Text>
+        {/* Plants data */}
+        <View style={styles.dataDiv}>
+          <View>
+            <View style={{ borderBottomWidth: 2, borderColor: 'black' }}>
+              <Text style={styles.title}>Plants</Text>
+            </View>
+            <TouchableOpacity
+              style={{ alignItems: 'center', marginBottom: 10 }}
+              onPress={addNewPlant}
+            >
+              <MaterialIcons name="add-circle" size={55} color="green" />
+            </TouchableOpacity>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              }}
+            >
+              <View style={{ width: 200 }}>
+                <Text style={{ fontSize: 15, textAlign: 'center' }}>
+                  Group Manipulations
+                </Text>
+                <DropdownComponent
+                  onDropdownFocuseChanged={onDropdownFocuseChanged}
+                  manipulOptions={manipulOptions}
+                />
+              </View>
+              {isManipulSelected ? (
+                <TouchableOpacity
+                  style={{
+                    alignSelf: 'center',
+                    padding: 10,
+                    borderRadius: 25,
+                    margin: 20,
+                    backgroundColor: 'green',
+                  }}
+                  onPress={onGroupManipul}
+                >
+                  <Text
+                    style={{ color: 'white', textAlign: 'auto', fontSize: 22 }}
+                  >
+                    Submit
+                  </Text>
+                </TouchableOpacity>
+              ) : (
+                <></>
+              )}
+            </View>
           </View>
-          <View style={styles.systemData}>
-            <Text style={styles.textStyle}>EC:12</Text>
-          </View>
-          <View style={styles.systemData}>
-            <Text style={styles.textStyle}>ppm:17</Text>
-          </View>
-          <View style={styles.systemData}>
-            <Text style={styles.textStyle}>sunlight:4 (hourse)</Text>
-          </View>
-          <View style={styles.systemData}>
-            <Text style={styles.textStyle}>Wather Temp: 25 °C</Text>
-          </View>
-          <View style={styles.systemData}>
-            <Text style={styles.textStyle}>Holes in use: 3/12</Text>
-          </View>
-        </View>
-
-        <View style={styles.plantDiv}>
-          <TouchableOpacity style={{ alignItems: 'center',marginBottom:10 }}>
-            <MaterialIcons name="add-circle" size={55} color="green" />
-          </TouchableOpacity>
 
           <FlatList
             scrollEnabled={false}
             keyExtractor={(item) => item.id}
             data={plantDataMock}
             renderItem={({ item }) => {
-              return <Plant item={item} />;
+              return (
+                <Plant
+                  item={item}
+                  isManipulSelected={isManipulSelected}
+                  addPlantToArr={addPlantToArr}
+                  removePlantFromArr={removePlantFromArr}
+                />
+              );
             }}
           />
+        </View>
+
+        {/* System maintains */}
+        <View style={styles.dataDiv}>
+          <View style={{ borderBottomWidth: 2, borderColor: 'black' }}>
+            <Text style={styles.title}>System maintains</Text>
+          </View>
+
+          <View style={styles.checkBoxDiv}>
+            <BouncyCheckbox
+              size={35}
+              fillColor={COLORS.darkColor}
+              unfillColor="#FFFFFF"
+              innerIconStyle={{ borderWidth: 2 }}
+              text="Root maintains"
+              textStyle={{
+                textDecorationLine: 'none',
+                fontSize: 28,
+                color: COLORS.darkColor,
+              }}
+            />
+          </View>
+
+          <View style={styles.checkBoxDiv}>
+            <BouncyCheckbox
+              size={35}
+              fillColor={COLORS.darkColor}
+              unfillColor="#FFFFFF"
+              innerIconStyle={{ borderWidth: 2 }}
+              text="Water Temp"
+              textStyle={{
+                textDecorationLine: 'none',
+                fontSize: 28,
+                color: COLORS.darkColor,
+              }}
+            />
+          </View>
+
+          <View style={styles.checkBoxDiv}>
+            <BouncyCheckbox
+              size={35}
+              fillColor={COLORS.darkColor}
+              unfillColor="#FFFFFF"
+              innerIconStyle={{ borderWidth: 2 }}
+              text="Changing water"
+              textStyle={{
+                textDecorationLine: 'none',
+                fontSize: 28,
+                color: COLORS.darkColor,
+              }}
+            />
+          </View>
+
+          <TouchableOpacity style={styles.submitBtn}>
+            <Text style={styles.submitBtnText}>Submit Maintains</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>
@@ -86,28 +257,25 @@ const SystemScreen = () => {
 export default SystemScreen;
 
 const styles = StyleSheet.create({
-  title:{fontSize:30,textAlign:"center",marginBottom:15},
+  title: { fontSize: 30, textAlign: 'center', marginBottom: 15 },
   systemDiv: {
     flex: 1,
     flexWrap: 'wrap',
     flexDirection: 'row',
-    justifyContent: 'space-around',
   },
-  systemData: {
-    flexBasis: '40%',
-    height: 80,
-    backgroundColor: COLORS.lightBrown,
-    marginBottom: 10,
-    padding: 10,
-    borderRadius: 15,
-    borderColor: COLORS.brown,
-    borderWidth: 2,
+
+  dataDiv: {
+    marginTop: 25,
   },
-  textStyle: {
-    fontSize: 20,
-    textAlign: 'center',
+  checkBoxDiv: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    margin: 20,
   },
-  plantDiv: {
-    marginTop: 15,
+  submitBtn: {
+    backgroundColor: COLORS.darkColor,
+    padding: 15,
+    borderRadius: 25,
   },
+  submitBtnText: { color: 'white', textAlign: 'center', fontSize: 22 },
 });

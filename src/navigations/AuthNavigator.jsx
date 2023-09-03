@@ -4,6 +4,7 @@ import { ForgotPasswordScreen, LoginScreen, SignupScreen } from '../screens';
 import { COLORS, ROUTES } from '../constants';
 import BottomTabNavigator from './BottomTabNavigator';
 import DrawerNavigator from './DrawerNavigator';
+import PlantScreen from '../screens/PlantScreen';
 
 const Stack = createStackNavigator(); // { Navigator, Screen, Group }
 
@@ -30,6 +31,11 @@ const AuthNavigator = () => {
       <Stack.Screen
         name={ROUTES.HOME}
         component={DrawerNavigator}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={ROUTES.PLANT_DETAILS}
+        component={PlantScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
