@@ -53,7 +53,7 @@ const HomeScreen = () => {
 
   return (
   
-    <View style={globalStyles.container}>
+    <View style={[globalStyles.container, { justifyContent: 'center' }]}>
       <ScrollView showsVerticalScrollIndicator={false} style={globalStyles.tabScrollView}>
         {/* Hi user */}
         <View style={styles.dataDiv}>
